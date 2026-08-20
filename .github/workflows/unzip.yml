@@ -1,0 +1,32 @@
+yamlname: Auto Unzip File
+
+on:
+  push:
+    paths:
+      - '*.zip' # Berjalan otomatis saat ada file .zip yang diupload
+
+jobs:
+  unzip-process:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract ZIP File
+        run: |
+          # Cari file zip yang baru diupload dan ekstrak
+          for file in *.zip; do
+            if [ -f "$file" ]; then
+              echo "Extracting $file..."
+              unzip -o "$file"
+              rm "$file" # Menghapus file zip asli setelah diekstrak
+            fi
+          done
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Automated unzip content" || exit 0
+          git push
