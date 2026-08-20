@@ -1,4 +1,4 @@
-yamlname: Auto Unzip File
+name: Auto Unzip File
 
 on:
   push:
