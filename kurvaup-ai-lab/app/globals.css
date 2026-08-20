@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(35,102,255,.14), transparent 26%),
+    radial-gradient(circle at 80% 20%, rgba(57,214,200,.09), transparent 24%),
+    #07111f;
+  color: #f7fbff;
+}
+* { box-sizing: border-box; }
+.card { @apply rounded-3xl border border-line bg-panel/80 backdrop-blur; }
+.btn-primary { @apply inline-flex items-center justify-center rounded-xl bg-glow px-5 py-3 font-semibold text-ink transition hover:scale-[1.02]; }
+.btn-secondary { @apply inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-semibold text-white transition hover:bg-white/10; }
+.badge { @apply inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70; }
+.input { @apply w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-white/30 focus:border-glow/60; }
+.textarea { @apply input min-h-32 resize-y; }
