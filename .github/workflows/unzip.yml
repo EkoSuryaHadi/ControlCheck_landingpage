@@ -1,0 +1,33 @@
+name: Auto Unzip File
+
+on:
+  push:
+    paths:
+      - '*.zip'
+
+jobs:
+  unzip-process:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Memberikan izin sistem untuk menulis/push file hasil ekstrak
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract ZIP File
+        run: |
+          for file in *.zip; do
+            if [ -f "$file" ]; then
+              echo "Extracting $file..."
+              unzip -o "$file" -d .
+              rm "$file"
+            fi
+          done
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@://github.com"
+          git add .
+          git commit -m "Automated unzip content" || exit 0
+          git push
