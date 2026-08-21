@@ -17,8 +17,8 @@ export default function Image() {
           justifyContent: 'space-between',
           padding: '64px 72px',
           color: 'white',
-          background:
-            'radial-gradient(circle at 78% 18%, rgba(57,214,200,.22), transparent 28%), radial-gradient(circle at 25% 85%, rgba(108,99,255,.28), transparent 32%), #07111f',
+          backgroundColor: '#07111f',
+          backgroundImage: 'linear-gradient(135deg, rgba(57,214,200,0.16), rgba(108,99,255,0.18) 52%, rgba(7,17,31,0) 100%)',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
@@ -32,7 +32,7 @@ export default function Image() {
               justifyContent: 'center',
               fontSize: 40,
               fontWeight: 800,
-              background: 'linear-gradient(135deg,#39D6C8,#6C63FF)',
+              backgroundImage: 'linear-gradient(135deg, #39D6C8, #6C63FF)',
               color: '#07111f',
             }}
           >
@@ -45,12 +45,12 @@ export default function Image() {
           <div style={{ fontSize: 66, lineHeight: 1.05, fontWeight: 800, letterSpacing: -2 }}>
             AI Solutions for Project Control & Assurance
           </div>
-          <div style={{ marginTop: 24, fontSize: 27, lineHeight: 1.35, color: 'rgba(255,255,255,.72)' }}>
+          <div style={{ marginTop: 24, fontSize: 27, lineHeight: 1.35, color: 'rgba(255,255,255,0.72)' }}>
             Practical AI products for project control, cost management, risk, schedule optimization, QA/QC, and analytics.
           </div>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 22, color: 'rgba(255,255,255,.65)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 22, color: 'rgba(255,255,255,0.65)' }}>
           <span>Explore · Experiment · Improve</span>
           <span>ai.kurvaup.com</span>
         </div>
