@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import { ArrowUpRight, Sparkles } from 'lucide-react'
 import type { Product } from '@/data/products'
+import { getProductMedia } from '@/data/productMedia'
 
 export function ProductCard({ product }: { product: Product }) {
   const isFeatured = product.status === 'Featured'
+  const media = getProductMedia(product.slug)
 
   return (
     <article className="card group relative overflow-hidden p-6 transition duration-300 hover:-translate-y-1 hover:border-glow/30 hover:shadow-glow">
@@ -18,31 +20,30 @@ export function ProductCard({ product }: { product: Product }) {
           </span>
         </div>
 
-        <div className="mb-6 aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[.08] via-white/[.025] to-glow/[.08] p-4">
-          <div className="flex h-full flex-col rounded-xl border border-white/10 bg-ink/80 p-4 shadow-inner">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="h-2 w-20 rounded-full bg-glow/70" />
-                <div className="mt-2 h-1.5 w-12 rounded-full bg-white/10" />
+        <div className="mb-6 aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[.08] via-white/[.025] to-glow/[.08] p-2">
+          {media.screenshot ? (
+            <div className="relative h-full overflow-hidden rounded-xl border border-white/10 bg-ink/80">
+              <img
+                src={media.screenshot}
+                alt={`${product.name} product screenshot`}
+                className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent" />
+            </div>
+          ) : (
+            <div className="flex h-full flex-col rounded-xl border border-white/10 bg-ink/80 p-4 shadow-inner">
+              <div className="flex items-center justify-between">
+                <div><div className="h-2 w-20 rounded-full bg-glow/70" /><div className="mt-2 h-1.5 w-12 rounded-full bg-white/10" /></div>
+                <div className="h-8 w-8 rounded-lg border border-white/10 bg-white/[.04]" />
               </div>
-              <div className="h-8 w-8 rounded-lg border border-white/10 bg-white/[.04]" />
+              <div className="mt-5 grid grid-cols-3 gap-2">
+                {[0, 1, 2].map((i) => <div key={i} className="rounded-lg border border-white/5 bg-white/[.035] p-2"><div className="h-1.5 w-8 rounded bg-white/10" /><div className="mt-2 h-3 w-12 rounded bg-white/15" /></div>)}
+              </div>
+              <div className="mt-3 flex flex-1 items-end gap-1.5 rounded-xl border border-white/5 bg-white/[.02] p-3">
+                {[32, 50, 42, 67, 58, 80, 72, 90].map((h, i) => <div key={i} className="flex-1 rounded-t bg-glow/20" style={{ height: `${h}%` }} />)}
+              </div>
             </div>
-
-            <div className="mt-5 grid grid-cols-3 gap-2">
-              {[0, 1, 2].map((i) => (
-                <div key={i} className="rounded-lg border border-white/5 bg-white/[.035] p-2">
-                  <div className="h-1.5 w-8 rounded bg-white/10" />
-                  <div className="mt-2 h-3 w-12 rounded bg-white/15" />
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-3 flex flex-1 items-end gap-1.5 rounded-xl border border-white/5 bg-white/[.02] p-3">
-              {[32, 50, 42, 67, 58, 80, 72, 90].map((h, i) => (
-                <div key={i} className="flex-1 rounded-t bg-glow/20" style={{ height: `${h}%` }} />
-              ))}
-            </div>
-          </div>
+          )}
         </div>
 
         <h3 className="text-xl font-semibold tracking-tight">{product.name}</h3>

@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import type { Product } from '@/data/products'
 import { trackEvent } from '@/lib/analytics'
+import { getProductMedia } from '@/data/productMedia'
 
 function statusLabel(status: Product['status']) {
   if (status === 'Featured') return 'Live Beta'
@@ -27,6 +28,20 @@ function statusLabel(status: Product['status']) {
 }
 
 function ProductPreview({ product }: { product: Product }) {
+  const media = getProductMedia(product.slug)
+
+  if (media.screenshot) {
+    return (
+      <div className="relative overflow-hidden rounded-[28px] border border-glow/18 bg-gradient-to-br from-[#0c1929] via-[#081522] to-[#0d2527] p-3 shadow-[0_35px_100px_rgba(0,0,0,.42)] md:p-4">
+        <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-glow/10 blur-[70px]" />
+        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#07111f]/95">
+          <img src={media.screenshot} alt={`${product.name} application screenshot`} className="block h-auto w-full" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07111f]/25 via-transparent to-transparent" />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="relative overflow-hidden rounded-[28px] border border-glow/18 bg-gradient-to-br from-[#0c1929] via-[#081522] to-[#0d2527] p-4 shadow-[0_35px_100px_rgba(0,0,0,.42)] md:p-5">
       <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-glow/10 blur-[70px]" />
@@ -78,7 +93,9 @@ export function ProductDetailClient({ product, related }: { product: Product; re
     trackEvent('try_free_click', { product: product.slug, path: `/products/${product.slug}` })
   }
 
-  const appIsReady = Boolean(product.appUrl && product.appUrl !== '#')
+  const media = getProductMedia(product.slug)
+  const resolvedAppUrl = media.demoUrl || product.appUrl
+  const appIsReady = Boolean(resolvedAppUrl && resolvedAppUrl !== '#')
 
   return (
     <main className="overflow-hidden">
@@ -101,7 +118,7 @@ export function ProductDetailClient({ product, related }: { product: Product; re
 
               <div className="mt-8 flex flex-wrap gap-3">
                 {appIsReady ? (
-                  <a href={product.appUrl} target="_blank" rel="noreferrer" onClick={handleTryFree} className="btn-primary gap-2">Try Free <ArrowUpRight size={17}/></a>
+                  <a href={resolvedAppUrl} target="_blank" rel="noreferrer" onClick={handleTryFree} className="btn-primary gap-2">Try Free <ArrowUpRight size={17}/></a>
                 ) : (
                   <button type="button" onClick={handleTryFree} className="btn-primary gap-2 opacity-80">Early Access <Sparkles size={16}/></button>
                 )}
@@ -188,7 +205,7 @@ export function ProductDetailClient({ product, related }: { product: Product; re
           <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-glow/10 blur-[80px]"/>
           <div className="relative flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
             <div><p className="text-xs font-semibold tracking-[.2em] text-glow">EARLY ACCESS</p><h2 className="mt-3 text-3xl font-semibold">Help shape {product.name}.</h2><p className="mt-3 max-w-2xl leading-7 text-white/48">Try the product, use it against a real problem, and tell us where it should go next.</p></div>
-            <div className="flex shrink-0 flex-wrap gap-3">{appIsReady ? <a href={product.appUrl} target="_blank" rel="noreferrer" onClick={handleTryFree} className="btn-primary gap-2">Try Free <ArrowUpRight size={16}/></a> : <Link href={`/feedback?product=${product.slug}`} className="btn-primary gap-2">Join Early Access <ArrowRight size={16}/></Link>}<Link href={`/feedback?product=${product.slug}`} className="btn-secondary">Give Feedback</Link></div>
+            <div className="flex shrink-0 flex-wrap gap-3">{appIsReady ? <a href={resolvedAppUrl} target="_blank" rel="noreferrer" onClick={handleTryFree} className="btn-primary gap-2">Try Free <ArrowUpRight size={16}/></a> : <Link href={`/feedback?product=${product.slug}`} className="btn-primary gap-2">Join Early Access <ArrowRight size={16}/></Link>}<Link href={`/feedback?product=${product.slug}`} className="btn-secondary">Give Feedback</Link></div>
           </div>
         </div>
       </section>
