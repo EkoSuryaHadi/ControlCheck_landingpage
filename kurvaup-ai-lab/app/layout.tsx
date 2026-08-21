@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Navbar } from '@/components/Navbar'
 import { AnalyticsTracker } from '@/components/AnalyticsTracker'
+import { GoogleAnalytics } from '@/components/GoogleAnalytics'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ai.kurvaup.com'
 
@@ -103,6 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <GoogleAnalytics />
         <AnalyticsTracker />
         <Navbar />
         {children}
