@@ -16,7 +16,8 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     setLoading(false)
     if (error) return setMessage(error.message)
-    const next = new URLSearchParams(window.location.search).get('next') || '/admin/dashboard'
+    const requestedNext = new URLSearchParams(window.location.search).get('next') || '/admin/dashboard'
+    const next = requestedNext === '/admin' ? '/admin/dashboard' : requestedNext
     router.push(next); router.refresh()
   }
 
