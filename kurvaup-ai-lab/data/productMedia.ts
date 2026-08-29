@@ -8,36 +8,36 @@ export const productMedia: Record<string, ProductMedia> = {
   'controlcheck-ai': {
     screenshot: '/products/controlcheck-ai/dashboard.png',
     demoUrl: 'https://control-check-ai.vercel.app/',
-    badge: 'Featured Product',
+    badge: 'Beta',
   },
 
   'valoris': {
     screenshot: '/products/valoris/dashboard.png',
     demoUrl: '',
-    badge: 'Beta',
+    badge: 'Development',
   },
 
   'epc-delay-predictor': {
     screenshot: '/products/epc-delay-predictor/dashboard.png',
-    demoUrl: '',
+    demoUrl: 'https://epc-delay-predictor-web.vercel.app/',
     badge: 'Beta',
   },
 
   'risk-analyst-pro': {
     screenshot: '/products/risk-analyst-pro/dashboard.png',
     demoUrl: '',
-    badge: 'Beta',
+    badge: 'Development',
   },
 
   'epc-schedule-optimizer': {
     screenshot: '/products/epc-schedule-optimizer/dashboard.png',
     demoUrl: '',
-    badge: 'Beta',
+    badge: 'Development',
   },
 
   'qaqc-intelligence': {
     screenshot: '/products/qaqc-intelligence/dashboard.png',
-    demoUrl: '',
+    demoUrl: 'https://quali-core-ai.vercel.app/',
     badge: 'Beta',
   },
 }
