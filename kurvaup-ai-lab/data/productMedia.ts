@@ -7,7 +7,7 @@ export type ProductMedia = {
 export const productMedia: Record<string, ProductMedia> = {
   'controlcheck-ai': {
     screenshot: '/products/controlcheck-ai/dashboard.png',
-    demoUrl: 'https://control-check-ai.vercel.app/',
+    demoUrl: 'http://206.237.98.72:8010/login',
     badge: 'Beta',
   },
 
