@@ -7,7 +7,7 @@ export type ProductMedia = {
 export const productMedia: Record<string, ProductMedia> = {
   'controlcheck-ai': {
     screenshot: '/products/controlcheck-ai/dashboard.png',
-    demoUrl: 'http://206.237.98.72:8010/login',
+    demoUrl: 'https://cursor-reduce-twice-totals.trycloudflare.com',
     badge: 'Beta',
   },
 
