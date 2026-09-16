@@ -13,8 +13,8 @@ export const productMedia: Record<string, ProductMedia> = {
 
   'valoris': {
     screenshot: '/products/valoris/dashboard.png',
-    demoUrl: '',
-    badge: 'Development',
+    demoUrl: 'https://cost-control-six.vercel.app/',
+    badge: 'Beta',
   },
 
   'epc-delay-predictor': {
