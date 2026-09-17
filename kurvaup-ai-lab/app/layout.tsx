@@ -49,13 +49,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'KurvaUp AI Lab | AI Solutions for Project Control & Assurance',
-    description:
-      'Practical AI products for project control, cost, risk, schedule, QA/QC, and project assurance.',
-    images: ['/twitter-image'],
-  },
   robots: {
     index: true,
     follow: true,

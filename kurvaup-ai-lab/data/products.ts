@@ -12,6 +12,17 @@ export type Product = {
 
 export const products: Product[] = [
   {
+    slug: 'manpower-mobility-management',
+    name: 'Manpower Mobility Management',
+    category: 'Workforce Operations',
+    status: 'Coming Soon',
+    summary: 'A planned solution for workforce readiness, mobilization, and coordination across project sites.',
+    problem: 'Workforce demand and mobilization information are spread across disconnected planning workflows.',
+    features: ['Planned: workforce readiness', 'Planned: mobilization visibility', 'Planned: assignment coordination'],
+    users: ['Workforce Planners', 'Operations Teams', 'Project Managers'],
+    appUrl: '#'
+  },
+  {
     slug: 'controlcheck-ai',
     name: 'ControlCheck AI',
     category: 'Project Control',
@@ -24,7 +35,7 @@ export const products: Product[] = [
   },
   {
     slug: 'valoris',
-    name: 'Valoris',
+    name: 'Valoris Agentic Intelligence',
     category: 'Cost Management',
     status: 'Beta',
     summary: 'Cost intelligence platform for EVM, forecasting, trend analysis, and management visibility.',
@@ -68,7 +79,7 @@ export const products: Product[] = [
   },
   {
     slug: 'qaqc-intelligence',
-    name: 'QA/QC Intelligence',
+    name: 'QualiCore AI',
     category: 'QA/QC & Assurance',
     status: 'Beta',
     summary: 'Quality intelligence for NCR, inspection, vendor quality, rework risk, and project assurance.',

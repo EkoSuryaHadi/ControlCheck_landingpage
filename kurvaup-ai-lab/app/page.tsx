@@ -1,193 +1,29 @@
 import Link from 'next/link'
-import {
-  ArrowRight,
-  BarChart3,
-  BrainCircuit,
-  CheckCircle2,
-  MessageSquare,
-  ShieldCheck,
-  Sparkles,
-  Wrench,
-  Zap,
-} from 'lucide-react'
+import type { Metadata } from 'next'
 import { products } from '@/data/products'
-import { ProductCard } from '@/components/ProductCard'
+import s from './studio.module.css'
 
-const categories = [
-  ['Project Control', 'Planning, progress, schedule & performance', BarChart3],
-  ['Cost Intelligence', 'Forecasting, EVM & financial visibility', BrainCircuit],
-  ['QA/QC & Assurance', 'Quality, inspection & assurance intelligence', CheckCircle2],
-  ['HSE & Operations', 'Operational visibility & safety intelligence', ShieldCheck],
-  ['Data & Analytics', 'Dashboards, prediction & decision support', Wrench],
-  ['AI Agents & Automation', 'Automate repetitive professional workflows', Zap],
-] as const
-
-const steps = [
-  ['01', 'Discover', 'Find an AI product relevant to your workflow.'],
-  ['02', 'Try Free', 'Use selected products during early access.'],
-  ['03', 'Give Feedback', 'Tell us what works, what does not, and what is missing.'],
-  ['04', 'We Improve', 'Usage signals help decide what gets developed further.'],
+export const metadata: Metadata = { title: 'Kurvaup | AI Solutions Studio', description: 'AI Solutions for Real-World Operations: project controls, quality intelligence, schedule risk, and workforce mobility.', openGraph: { title: 'Kurvaup | AI Solutions Studio' }, twitter: { title: 'Kurvaup | AI Solutions Studio' } }
+const slugs = ['controlcheck-ai', 'qaqc-intelligence', 'epc-delay-predictor', 'valoris', 'manpower-mobility-management']
+const challenges = [
+  ['Fragmented project signals', 'Connect progress, cost, and schedule so teams can investigate variance sooner.'],
+  ['Quality issues found too late', 'Bring inspections and non-conformance records together to identify recurring problems.'],
+  ['Decisions stuck in spreadsheets', 'Turn reporting workflows into accessible intelligence, with people accountable for the final call.'],
+  ['Workforce coordination gaps', 'Connect workforce demand, readiness, and movement across sites and assignments.'],
 ]
+const steps = [['Discover', 'Understand the decision.', 'Map your workflow, data, constraints, and the outcome worth improving.'], ['Design', 'Prove the useful part.', 'Test a focused use case with the people who will use it.'], ['Build', 'Connect it to real work.', 'Develop and integrate the solution, with review points and clear ownership.'], ['Improve', 'Learn from operation.', 'Evaluate feedback and agreed success measures, then refine what matters.']]
 
 export default function Home() {
-  const featured = products.find((p) => p.status === 'Featured') || products[0]
-  const showcase = products.slice(0, 6)
-
-  return (
-    <main>
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(57,214,200,.12),transparent_25%),radial-gradient(circle_at_82%_22%,rgba(59,130,246,.12),transparent_24%)]" />
-        <div className="relative mx-auto grid min-h-[82vh] max-w-7xl items-center gap-14 px-6 py-20 lg:grid-cols-[1.05fr_.95fr] lg:py-24">
-          <div>
-            <span className="badge mb-6 border-glow/20 bg-glow/[.06] text-glow">KURVAUP AI PRODUCT LAB</span>
-            <h1 className="max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-.05em] md:text-7xl">
-              Practical AI tools for <span className="text-glow">real work.</span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/58">
-              Explore AI-powered products for project control, engineering, operations, analytics, and business workflows—released early, tested with real users, and improved from real usage.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/products" className="btn-primary">
-                Explore AI Products <ArrowRight size={18} />
-              </Link>
-              <Link href="/submit-idea" className="btn-secondary">
-                Submit a Problem
-              </Link>
-            </div>
-
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/42">
-              <span>Free early access</span>
-              <span>Built with real-user feedback</span>
-              <span>Focused on practical outcomes</span>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="absolute inset-10 rounded-full bg-glow/10 blur-3xl" />
-            <div className="card relative overflow-hidden p-5 shadow-glow md:p-6">
-              <div className="absolute inset-0 bg-gradient-to-br from-glow/[.05] via-transparent to-blue-500/[.06]" />
-              <div className="relative">
-                <div className="mb-5 flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-xs uppercase tracking-[.18em] text-white/35">Featured Product</p>
-                    <h3 className="mt-2 text-2xl font-semibold">{featured?.name || 'ControlCheck AI'}</h3>
-                  </div>
-                  <span className="badge border-glow/20 bg-glow/10 text-glow">LIVE BETA</span>
-                </div>
-
-                <div className="grid grid-cols-3 gap-3">
-                  <div className="rounded-xl border border-white/5 bg-white/[.035] p-4">
-                    <p className="text-[11px] text-white/35">Project Health</p>
-                    <p className="mt-2 text-2xl font-semibold">86%</p>
-                  </div>
-                  <div className="rounded-xl border border-white/5 bg-white/[.035] p-4">
-                    <p className="text-[11px] text-white/35">Early Signals</p>
-                    <p className="mt-2 text-2xl font-semibold">34</p>
-                  </div>
-                  <div className="rounded-xl border border-white/5 bg-white/[.035] p-4">
-                    <p className="text-[11px] text-white/35">Alerts</p>
-                    <p className="mt-2 text-2xl font-semibold">12</p>
-                  </div>
-                </div>
-
-                <div className="mt-4 h-56 rounded-2xl border border-white/10 bg-gradient-to-b from-glow/[.08] to-white/[.02] p-5">
-                  <div className="flex h-full items-end gap-2">
-                    {[28, 45, 38, 62, 54, 76, 68, 88, 80, 94].map((h, i) => (
-                      <div key={i} className="flex-1 rounded-t bg-glow/20" style={{ height: `${h}%` }} />
-                    ))}
-                  </div>
-                </div>
-
-                {featured && (
-                  <Link href={`/products/${featured.slug}`} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-glow">
-                    Explore {featured.name} <ArrowRight size={16} />
-                  </Link>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="mb-10 flex flex-wrap items-end justify-between gap-5">
-          <div>
-            <p className="text-xs font-semibold tracking-[.2em] text-glow">PRODUCT CATALOG</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">Explore what we are building</h2>
-            <p className="mt-4 max-w-2xl text-white/52">Selected AI products currently in validation across project, cost, risk, quality, and engineering workflows.</p>
-          </div>
-          <Link href="/products" className="text-sm font-semibold text-glow">View all products →</Link>
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {showcase.map((product) => <ProductCard key={product.slug} product={product} />)}
-        </div>
-      </section>
-
-      <section id="categories" className="border-y border-white/5 bg-white/[.012]">
-        <div className="mx-auto max-w-7xl px-6 py-20">
-          <p className="text-xs font-semibold tracking-[.2em] text-glow">FOCUS AREAS</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight">Built around real professional workflows</h2>
-          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {categories.map(([name, description, Icon]) => (
-              <div key={name} className="card group p-5 transition hover:border-glow/20">
-                <div className="flex items-start gap-4">
-                  <div className="rounded-xl border border-glow/10 bg-glow/[.08] p-3 text-glow"><Icon size={20} /></div>
-                  <div>
-                    <h3 className="font-semibold">{name}</h3>
-                    <p className="mt-2 text-sm leading-6 text-white/42">{description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
-          <div>
-            <p className="text-xs font-semibold tracking-[.2em] text-glow">VALIDATION LOOP</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-tight">Build less on assumptions.</h2>
-            <p className="mt-4 max-w-xl text-white/52">KurvaUp AI Lab releases useful tools early, observes real adoption, listens to users, and invests further in products that create real value.</p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {steps.map(([number, title, description]) => (
-              <div key={number} className="card p-5">
-                <span className="text-xs font-semibold tracking-[.18em] text-glow">{number}</span>
-                <h3 className="mt-3 text-lg font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-white/42">{description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 pb-24">
-        <div className="card relative overflow-hidden p-8 md:p-12">
-          <div className="absolute right-0 top-0 h-56 w-56 rounded-full bg-glow/10 blur-3xl" />
-          <div className="relative grid items-center gap-8 md:grid-cols-[1fr_auto]">
-            <div>
-              <div className="mb-5 inline-flex rounded-xl border border-glow/10 bg-glow/[.07] p-3 text-glow"><MessageSquare size={22} /></div>
-              <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Have a problem AI could solve?</h2>
-              <p className="mt-4 max-w-2xl leading-7 text-white/50">Tell us about a repetitive task, workflow, reporting pain point, or operational challenge. It could become our next product experiment.</p>
-            </div>
-            <Link href="/submit-idea" className="btn-primary">Submit an Idea <Sparkles size={17} /></Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/5 bg-white/[.01]">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 md:grid-cols-[1fr_auto] md:items-center">
-          <div>
-            <p className="text-xs font-semibold tracking-[.2em] text-glow">KURVAUP AI LAB</p>
-            <h2 className="mt-3 text-2xl font-semibold">We do not just talk about AI. We build things people can use.</h2>
-          </div>
-          <div className="text-sm text-white/38">Explore · Experiment · Improve</div>
-        </div>
-      </section>
-    </main>
-  )
+  return <main id="main-content" className={s.studio}>
+    <section className={`${s.wrap} ${s.hero}`}><div><p className={s.kicker}>● KURVAUP / AI SOLUTIONS STUDIO</p><h1>AI Solutions for <span>Real-World</span> Operations.</h1><p className={s.lede}>Complex operations. Clearer decisions.<br />Practical AI products for the people delivering projects, assuring quality, and keeping operations moving.</p><div className={s.actions}><Link className={s.button} href="/submit-idea">Discuss your challenge ↗</Link><a href="#products">Explore solutions ↓</a></div><p className={s.micro}>ENGINEERING CONTEXT. PRODUCT THINKING. HUMAN JUDGMENT.</p></div>
+    <div className={s.system}><p className={s.micro}>THE OPERATIONAL INTELLIGENCE LAYER</p><div className={s.inputs}><span>Project data</span><span>Quality records</span><span>Workforce inputs</span></div><div className={s.wires} aria-hidden="true"/><div className={s.engine}><b aria-hidden="true">K↗</b><div><small>CONTEXT → INTELLIGENCE</small><h2>See what matters.</h2><p>Connect signals. Surface priorities.</p></div></div><p className={s.output}>HUMAN REVIEW → INFORMED ACTION</p><p className={s.micro}>SCHEMATIC / NOT LIVE DATA</p></div></section>
+    <div className={s.capabilities}><div className={s.wrap}><span>FROM INSIGHT TO EXECUTION</span><p>Predictive analytics</p><p>Decision support</p><p>Agentic workflows</p><p>Operational visibility</p></div></div>
+    <section id="categories" className={`${s.wrap} ${s.section}`}><div className={s.heading}><div><p className={s.kicker}>01 / WHAT WE SOLVE</p><h2>Real friction.<br /><span>Practical intelligence.</span></h2></div><p>We start with the pressure points in your operation, then find where AI can make a useful difference.</p></div><div className={s.four}>{challenges.map(([title,text],i)=><article key={title}><small>0{i+1}</small><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+    <section id="products" className={`${s.wrap} ${s.section}`}><div className={s.heading}><div><p className={s.kicker}>02 / FEATURED AI PRODUCTS</p><h2>Purpose-built.<br /><span>For the work you do.</span></h2></div><Link href="/products">Explore the full catalog ↗</Link></div>{slugs.map((slug,i)=>{const p=products.find(p=>p.slug===slug)!;return <article className={s.product} key={slug}><small>0{i+1}</small><div><p className={s.micro}>{p.category}</p><h3><Link href={`/products/${slug}`}>{p.name}</Link></h3></div><p>{p.summary}</p><div className={s.productEnd}><small>{p.status}</small><Link href={`/products/${slug}`} aria-label={`Explore ${p.name}`}>↗</Link></div></article>})}</section>
+    <section id="approach" className={s.process}><div className={`${s.wrap} ${s.section}`}><div className={s.heading}><div><p className={s.kicker}>03 / HOW WE WORK</p><h2>From the right question<br />to a working solution.</h2></div><p>Operational knowledge, useful technology, and continuous feedback.</p></div><div className={s.four}>{steps.map(([label,title,text],i)=><article key={label}><small>0{i+1} / {label}</small><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+    <section id="case-studies" className={`${s.wrap} ${s.section}`}><div className={s.heading}><div><p className={s.kicker}>04 / SELECTED CASE STUDIES</p><h2>Intelligence in context.</h2></div><p>Illustrative use cases, not verified client outcomes. Explore how these products can support operational decisions.</p></div><div className={s.cases}><article><p className={s.kicker}>PROJECT DELIVERY / ILLUSTRATIVE USE CASE</p><h3>Find the signal before the milestone slips.</h3><dl><dt>The challenge</dt><dd>Schedule reviews happen after slippage has begun to affect delivery.</dd><dt>The approach</dt><dd>Review delay risk, investigate exposed activities, and support a planner’s next decision with EPC Delay Predictor.</dd></dl><Link href="/products/epc-delay-predictor">Explore schedule intelligence ↗</Link></article><article><p className={s.kicker}>QUALITY ASSURANCE / ILLUSTRATIVE USE CASE</p><h3>Make quality records part of the next decision.</h3><dl><dt>The challenge</dt><dd>Inspection and NCR records are scattered across reporting workflows.</dd><dt>The approach</dt><dd>Bring quality signals together for inspection review, vendor assessment, and earlier investigation with QualiCore AI.</dd></dl><Link href="/products/qaqc-intelligence">Explore quality intelligence ↗</Link></article></div></section>
+    <section className={`${s.wrap} ${s.section} ${s.why}`}><div><p className={s.kicker}>05 / WHY KURVAUP</p><h2>Built close<br />to the problem.</h2><Link href="/about">Get to know the studio ↗</Link></div><div>{[['Operational context first','Project controls, quality, and workforce needs shape the product from the start.'],['Focused products, connected thinking','Each solution addresses a defined workflow while keeping the wider operation in view.'],['People stay in the decision loop','AI supports investigation and action. Your team brings judgment, context, and accountability.']].map(([title,text])=><article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+    <section id="contact" className={s.contact}><div className={s.wrap}><p className={s.kicker}>YOUR NEXT OPERATIONAL ADVANTAGE</p><h2>Let’s put AI<br /><span>to work.</span></h2><div><p>Have a complex workflow or a recurring operational challenge? Let’s start there.</p><Link className={s.button} href="/submit-idea">Tell us what you’re solving ↗</Link></div></div></section>
+    <footer className={`${s.wrap} ${s.footer}`}><div><Link className={s.brand} href="/">KurvaUp ↗</Link><p>AI Solutions for Real-World Operations.</p></div><nav aria-label="Footer"><Link href="/products">Products</Link><Link href="/about">About</Link><Link href="/feedback">Feedback</Link><Link href="/login">Admin login</Link></nav><small>© {new Date().getFullYear()} Kurvaup</small></footer>
+  </main>
 }

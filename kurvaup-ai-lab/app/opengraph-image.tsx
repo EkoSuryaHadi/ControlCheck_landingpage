@@ -1,6 +1,8 @@
 import { ImageResponse } from 'next/og'
 
-export const runtime = 'edge'
+// Node runtime keeps local Windows builds compatible with the generated image route.
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 export const alt = 'KurvaUp AI Lab — AI Solutions for Project Control & Assurance'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
